@@ -1,0 +1,682 @@
+﻿[
+    {
+        "id": 1,
+        "seasonid": 1,
+        "mapid": 1,
+        "name": "刁蛮浪者",
+        "nick": "黄鼠狼",
+        "seasonname": "感恩季",
+        "retro": 3,
+        "hotscore": 19.8
+    },
+    {
+        "id": 2,
+        "seasonid": 1,
+        "mapid": 5,
+        "name": "敬礼护卫",
+        "nick": "打人/白绒",
+        "seasonname": "感恩季",
+        "retro": 1,
+        "hotscore": 9.03
+    },
+    {
+        "id": 3,
+        "seasonid": 1,
+        "mapid": 6,
+        "name": "拳礼武僧",
+        "nick": "拱手/牛头",
+        "seasonname": "感恩季",
+        "retro": 3,
+        "hotscore": 6.55
+    },
+    {
+        "id": 4,
+        "seasonid": 1,
+        "mapid": 2,
+        "name": "舒展大师",
+        "nick": "瑜伽/宋小宝",
+        "seasonname": "感恩季",
+        "retro": 3,
+        "hotscore": 20
+    },
+    {
+        "id": 5,
+        "seasonid": 1,
+        "mapid": 3,
+        "name": "挑衅艺妓",
+        "nick": "唐僧帽",
+        "seasonname": "感恩季",
+        "retro": 1,
+        "hotscore": 2.9
+    },
+    {
+        "id": 6,
+        "seasonid": 1,
+        "mapid": 4,
+        "name": "跳跃舞者",
+        "nick": "红狐狸",
+        "seasonname": "感恩季",
+        "retro": 2,
+        "hotscore": 18
+    },
+    {
+        "id": 7,
+        "seasonid": 2,
+        "mapid": 2,
+        "name": "击掌光农",
+        "nick": "笛子/斗笠",
+        "seasonname": "追光季",
+        "retro": 2,
+        "hotscore": 27.2
+    },
+    {
+        "id": 8,
+        "seasonid": 2,
+        "mapid": 1,
+        "name": "肩背追光",
+        "nick": "二级背背",
+        "seasonname": "追光季",
+        "retro": 1,
+        "hotscore": 16
+    },
+    {
+        "id": 9,
+        "seasonid": 2,
+        "mapid": 6,
+        "name": "静光学者",
+        "nick": "灯泡斗/噤声",
+        "seasonname": "追光季",
+        "retro": 2,
+        "hotscore": 9
+    },
+    {
+        "id": 10,
+        "seasonid": 2,
+        "mapid": 4,
+        "name": "螺旋舞冠",
+        "nick": "排箫",
+        "seasonname": "追光季",
+        "retro": 1,
+        "hotscore": 13.5
+    },
+    {
+        "id": 11,
+        "seasonid": 2,
+        "mapid": 5,
+        "name": "蟹语者",
+        "nick": "螃蟹叫/花瓣斗",
+        "seasonname": "追光季",
+        "retro": 2,
+        "hotscore": 62.1
+    },
+    {
+        "id": 12,
+        "seasonid": 2,
+        "mapid": 3,
+        "name": "随性拓荒者",
+        "nick": "雨伞",
+        "seasonname": "追光季",
+        "retro": 1,
+        "hotscore": 64.9
+    },
+    {
+        "id": 13,
+        "seasonid": 3,
+        "mapid": 5,
+        "name": "不舍家长",
+        "nick": "黑金/吉他",
+        "seasonname": "归属季",
+        "retro": 1,
+        "hotscore": 53.3
+    },
+    {
+        "id": 14,
+        "seasonid": 3,
+        "mapid": 2,
+        "name": "彩纸表亲",
+        "nick": "蝴蝶结/礼花/红金",
+        "seasonname": "归属季",
+        "retro": 2,
+        "hotscore": 31.2
+    },
+    {
+        "id": 15,
+        "seasonid": 3,
+        "mapid": 4,
+        "name": "火花家长",
+        "nick": "手花",
+        "seasonname": "归属季",
+        "retro": 2,
+        "hotscore": 12.7
+    },
+    {
+        "id": 16,
+        "seasonid": 3,
+        "mapid": 3,
+        "name": "蓬头青年",
+        "nick": "红耳机/尤克里里/二级摸摸",
+        "seasonname": "归属季",
+        "retro": 2,
+        "hotscore": 46.6
+    },
+    {
+        "id": 17,
+        "seasonid": 3,
+        "mapid": 1,
+        "name": "踏舞孩童",
+        "nick": "白棉裤/蹦迪",
+        "seasonname": "归属季",
+        "retro": 3,
+        "hotscore": 76.2
+    },
+    {
+        "id": 18,
+        "seasonid": 3,
+        "mapid": 6,
+        "name": "智慧家长",
+        "nick": "白金",
+        "seasonname": "归属季",
+        "retro": 3,
+        "hotscore": 56.5
+    },
+    {
+        "id": 19,
+        "seasonid": 4,
+        "mapid": 6,
+        "name": "沉思编导",
+        "nick": "白鸟斗/思考/木琴",
+        "seasonname": "音韵季",
+        "retro": 2,
+        "hotscore": 81
+    },
+    {
+        "id": 20,
+        "seasonid": 4,
+        "mapid": 1,
+        "name": "迎宾使者",
+        "nick": "拍照/毛靴",
+        "seasonname": "音韵季",
+        "retro": 2,
+        "hotscore": 81.3
+    },
+    {
+        "id": 21,
+        "seasonid": 4,
+        "mapid": 5,
+        "name": "致敬钢琴家",
+        "nick": "骑士跪/高音钢琴",
+        "seasonname": "音韵季",
+        "retro": 2,
+        "hotscore": 32.2
+    },
+    {
+        "id": 22,
+        "seasonid": 4,
+        "mapid": 4,
+        "name": "抛球杂耍",
+        "nick": "搓澡巾",
+        "seasonname": "音韵季",
+        "retro": 2,
+        "hotscore": 24.2
+    },
+    {
+        "id": 23,
+        "seasonid": 4,
+        "mapid": 3,
+        "name": "献情演员",
+        "nick": "啵啵",
+        "seasonname": "音韵季",
+        "retro": 2,
+        "hotscore": 30
+    },
+    {
+        "id": 24,
+        "seasonid": 4,
+        "mapid": 2,
+        "name": "旋转舞者",
+        "nick": "棉裤(灯笼裤)",
+        "seasonname": "音韵季",
+        "retro": 3,
+        "hotscore": 24.3
+    },
+    {
+        "id": 25,
+        "seasonid": 5,
+        "mapid": 5,
+        "name": "赞许壁画家",
+        "nick": "点头",
+        "seasonname": "魔法季",
+        "retro": 2,
+        "hotscore": 38.5
+    },
+    {
+        "id": 26,
+        "seasonid": 5,
+        "mapid": 5,
+        "name": "瞌睡木匠",
+        "nick": "公主",
+        "seasonname": "魔法季",
+        "retro": 2,
+        "hotscore": 27.8
+    },
+    {
+        "id": 27,
+        "seasonid": 5,
+        "mapid": 5,
+        "name": "蟹舞者",
+        "nick": "螃蟹舞",
+        "seasonname": "魔法季",
+        "retro": 1,
+        "hotscore": 38.6
+    },
+    {
+        "id": 28,
+        "seasonid": 5,
+        "mapid": 5,
+        "name": "稻草人农夫",
+        "nick": "吓人",
+        "seasonname": "魔法季",
+        "retro": 2,
+        "hotscore": 33.2
+    },
+    {
+        "id": 29,
+        "seasonid": 5,
+        "mapid": 5,
+        "name": "冷漠术士",
+        "nick": "问号老头",
+        "seasonname": "魔法季",
+        "retro": 2,
+        "hotscore": 14.8
+    },
+    {
+        "id": 30,
+        "seasonid": 5,
+        "mapid": 5,
+        "name": "情绪草药师",
+        "nick": "粗辨/二级打闹",
+        "seasonname": "魔法季",
+        "retro": 2,
+        "hotscore": 17.1
+    },
+    {
+        "id": 31,
+        "seasonid": 6,
+        "mapid": 2,
+        "name": "固执登山者",
+        "nick": "生气/黑领结",
+        "seasonname": "圣岛季",
+        "retro": 1,
+        "hotscore": 20.6
+    },
+    {
+        "id": 32,
+        "seasonid": 6,
+        "mapid": 2,
+        "name": "热血总动员",
+        "nick": "连体裤/鼓气",
+        "seasonname": "圣岛季",
+        "retro": 1,
+        "hotscore": 54.3
+    },
+    {
+        "id": 33,
+        "seasonid": 6,
+        "mapid": 2,
+        "name": "内秀书虫",
+        "nick": "书虫",
+        "seasonname": "圣岛季",
+        "retro": 2,
+        "hotscore": 33.3
+    },
+    {
+        "id": 34,
+        "seasonid": 6,
+        "mapid": 2,
+        "name": "放松日浴者",
+        "nick": "摸肚子/太阳镜",
+        "seasonname": "圣岛季",
+        "retro": 2,
+        "hotscore": 16.7
+    },
+    {
+        "id": 35,
+        "seasonid": 6,
+        "mapid": 2,
+        "name": "母语者",
+        "nick": "水母叫",
+        "seasonname": "圣岛季",
+        "retro": 2,
+        "hotscore": 71.1
+    },
+    {
+        "id": 36,
+        "seasonid": 6,
+        "mapid": 2,
+        "name": "鸣谢收藏家",
+        "nick": "正太/示爱",
+        "seasonname": "圣岛季",
+        "retro": 2,
+        "hotscore": 93.5
+    },
+    {
+        "id": 37,
+        "seasonid": 7,
+        "mapid": 1,
+        "name": "火先知",
+        "nick": "武士裤",
+        "seasonname": "预言季",
+        "retro": 1,
+        "hotscore": 68
+    },
+    {
+        "id": 38,
+        "seasonid": 7,
+        "mapid": 1,
+        "name": "风先知",
+        "nick": "倒立/紫蝠斗",
+        "seasonname": "预言季",
+        "retro": 1,
+        "hotscore": 35
+    },
+    {
+        "id": 39,
+        "seasonid": 7,
+        "mapid": 1,
+        "name": "土先知",
+        "nick": "丫鬟",
+        "seasonname": "预言季",
+        "retro": 1,
+        "hotscore": 27
+    },
+    {
+        "id": 40,
+        "seasonid": 7,
+        "mapid": 1,
+        "name": "水先知",
+        "nick": "高马尾",
+        "seasonname": "预言季",
+        "retro": 2,
+        "hotscore": 51
+    },
+    {
+        "id": 41,
+        "seasonid": 8,
+        "mapid": 4,
+        "name": "熊抱雪人",
+        "nick": "熊抱",
+        "seasonname": "梦想季",
+        "retro": 1,
+        "hotscore": 11.3
+    },
+    {
+        "id": 42,
+        "seasonid": 8,
+        "mapid": 4,
+        "name": "回旋大师",
+        "nick": "回旋/郡主",
+        "seasonname": "梦想季",
+        "retro": 1,
+        "hotscore": 16.2
+    },
+    {
+        "id": 43,
+        "seasonid": 8,
+        "mapid": 4,
+        "name": "跳舞艺人",
+        "nick": "箬笠",
+        "seasonname": "梦想季",
+        "retro": 0,
+        "hotscore": 24.3
+    },
+    {
+        "id": 44,
+        "seasonid": 8,
+        "mapid": 4,
+        "name": "偷窥邮差",
+        "nick": "偷窥/红兔子围巾斗",
+        "seasonname": "梦想季",
+        "retro": 1,
+        "hotscore": 11.3
+    },
+    {
+        "id": 45,
+        "seasonid": 9,
+        "mapid": 3,
+        "name": "白日梦森林人",
+        "nick": "花环/吹泡泡",
+        "seasonname": "重组季",
+        "retro": 1,
+        "hotscore": 37.7
+    },
+    {
+        "id": 46,
+        "seasonid": 9,
+        "mapid": 3,
+        "name": "胆小鬼学员",
+        "nick": "吊床",
+        "seasonname": "重组季",
+        "retro": 1,
+        "hotscore": 11
+    },
+    {
+        "id": 47,
+        "seasonid": 9,
+        "mapid": 3,
+        "name": "管事小队长",
+        "nick": "指指点点",
+        "seasonname": "重组季",
+        "retro": 0,
+        "hotscore": 24.1
+    },
+    {
+        "id": 48,
+        "seasonid": 9,
+        "mapid": 3,
+        "name": "满然植物学生",
+        "nick": "头大",
+        "seasonname": "重组季",
+        "retro": 0,
+        "hotscore": 4.9
+    },
+    {
+        "id": 49,
+        "seasonid": 9,
+        "mapid": 3,
+        "name": "傻笑童子军",
+        "nick": "偷笑",
+        "seasonname": "重组季",
+        "retro": 0,
+        "hotscore": 49.1
+    },
+    {
+        "id": 50,
+        "seasonid": 9,
+        "mapid": 3,
+        "name": "正步冒险家",
+        "nick": "火炬/眼罩/正步走",
+        "seasonname": "重组季",
+        "retro": 1,
+        "hotscore": 30.7
+    },
+    {
+        "id": 51,
+        "seasonid": 10,
+        "mapid": 6,
+        "name": "地理学家",
+        "nick": "打喷嚏",
+        "seasonname": "小王子季",
+        "retro": 0,
+        "hotscore": 5.34
+    },
+    {
+        "id": 52,
+        "seasonid": 10,
+        "mapid": 6,
+        "name": "点灯人",
+        "nick": "军帽",
+        "seasonname": "小王子季",
+        "retro": 0,
+        "hotscore": 8.45
+    },
+    {
+        "id": 53,
+        "seasonid": 10,
+        "mapid": 6,
+        "name": "发号施令的国王",
+        "nick": "挑衅",
+        "seasonname": "小王子季",
+        "retro": 0,
+        "hotscore": 1.71
+    },
+    {
+        "id": 54,
+        "seasonid": 10,
+        "mapid": 6,
+        "name": "颓废的士兵",
+        "nick": "倒地",
+        "seasonname": "小王子季",
+        "retro": 0,
+        "hotscore": 2.99
+    },
+    {
+        "id": 55,
+        "seasonid": 10,
+        "mapid": 6,
+        "name": "星光收藏家",
+        "nick": "星灯",
+        "seasonname": "小王子季",
+        "retro": 0,
+        "hotscore": 16.5
+    },
+    {
+        "id": 56,
+        "seasonid": 10,
+        "mapid": 6,
+        "name": "虚荣舞者",
+        "nick": "虚荣",
+        "seasonname": "小王子季",
+        "retro": 1,
+        "hotscore": 73.6
+    },
+    {
+        "id": 57,
+        "seasonid": 11,
+        "mapid": 3,
+        "name": "活跃领航员",
+        "nick": "领航员/双色斗",
+        "seasonname": "风行季",
+        "retro": 0,
+        "hotscore": 2.23
+    },
+    {
+        "id": 58,
+        "seasonid": 11,
+        "mapid": 3,
+        "name": "风铃修补匠",
+        "nick": "拇指琴",
+        "seasonname": "风行季",
+        "retro": 0,
+        "hotscore": 9.33
+    },
+    {
+        "id": 59,
+        "seasonid": 11,
+        "mapid": 3,
+        "name": "光之低语者",
+        "nick": "幼鲲叫",
+        "seasonname": "风行季",
+        "retro": 0,
+        "hotscore": 2.74
+    },
+    {
+        "id": 60,
+        "seasonid": 11,
+        "mapid": 3,
+        "name": "天才建筑者",
+        "nick": "展示/毛领围脖",
+        "seasonname": "风行季",
+        "retro": 0,
+        "hotscore": 2.06
+    },
+    {
+        "id": 61,
+        "seasonid": 12,
+        "mapid": 5,
+        "name": "焦虑渔夫",
+        "nick": "水手裤",
+        "seasonname": "潜海季",
+        "retro": 0,
+        "hotscore": 4.74
+    },
+    {
+        "id": 62,
+        "seasonid": 12,
+        "mapid": 5,
+        "name": "嬉笑炮手",
+        "nick": "魔王笑",
+        "seasonname": "潜海季",
+        "retro": 0,
+        "hotscore": 6.56
+    },
+    {
+        "id": 63,
+        "seasonid": 12,
+        "mapid": 5,
+        "name": "海军将领",
+        "nick": "冷静",
+        "seasonname": "潜海季",
+        "retro": 0,
+        "hotscore": 0.88
+    },
+    {
+        "id": 64,
+        "seasonid": 12,
+        "mapid": 5,
+        "name": "笨拙水手",
+        "nick": "海军大衣/栗子帽",
+        "seasonname": "潜海季",
+        "retro": 0,
+        "hotscore": 4.13
+    },
+    {
+        "id": 65,
+        "seasonid": 13,
+        "mapid": 4,
+        "name": "老练音乐家",
+        "nick": "电吉他",
+        "seasonname": "表演季",
+        "retro": 0,
+        "hotscore": 43.4
+    },
+    {
+        "id": 66,
+        "seasonid": 13,
+        "mapid": 4,
+        "name": "健忘叙事者",
+        "nick": "小丑裤、小丑帽",
+        "seasonname": "表演季",
+        "retro": 0,
+        "hotscore": 18
+    },
+    {
+        "id": 67,
+        "seasonid": 13,
+        "mapid": 4,
+        "name": "谦虚的舞者",
+        "nick": "红豆帽",
+        "seasonname": "表演季",
+        "retro": 0,
+        "hotscore": 10.6
+    },
+    {
+        "id": 68,
+        "seasonid": 13,
+        "mapid": 4,
+        "name": "忙碌的舞台管理员",
+        "nick": "黑猫头",
+        "seasonname": "表演季",
+        "retro": 0,
+        "hotscore": 44.45
+    }
+]
