@@ -2,12 +2,13 @@
 <template>
   <div class="main">
     <div class="trainBox">
+      <p style="font-family: 'CTLiShuSF'; color: aliceblue;" id="tabname">{{ tab.currentName }}</p>
       <el-button @click="train" type="primary">训练</el-button>
       <el-button @click="adjust()" type="warning">调参</el-button>
       <el-button @click="predict()" type="success">预测</el-button>
       <el-button @click="save()" type="danger" v-if="false">保存</el-button>
     </div>
-    <evan-tabs-vue v-model:current="tab.current" @click="sliteTab" id="tabTool"></evan-tabs-vue>
+    <evan-tabs-vue v-model:current="tab.current" id="tabTool"></evan-tabs-vue>
     <div id="tabs">
       <div class="mytab" v-if="tab.current == 1">
         <el-table id="table" :data="result" style="width: 100%" height="70vh" ref="tableref"
@@ -38,94 +39,25 @@
         <el-table id="table" :data="recordCN" style="width: 100%" height="70vh" ref="tableref"
           :cell-style="{ 'text-align': 'center' }" :header-cell-style="{ 'background': '#171717' }">
           <el-table-column prop="id" label="档期" align="center"> </el-table-column>
-          <el-table-column prop="name" label="先祖" align="center" width="200"> </el-table-column>
-          <el-table-column prop="leave" label="距离上次复刻" align="center" width="180"> </el-table-column>
-          <el-table-column prop="season" label="季节" align="center"> </el-table-column>
-          <el-table-column prop="map" label="地图" align="center"> </el-table-column>
+          <el-table-column prop="name" label="先祖" align="center" width="200">
+            <template #default="scope">
+              <p id="t2name" @click="sliteTab(3)">{{ scope.row.name }}</p>
+            </template>
+          </el-table-column>
           <el-table-column prop="count" label="第几次复刻" align="center"> </el-table-column>
+          <el-table-column prop="leave" label="距离上次复刻" align="center" width="180" > </el-table-column>
+          <el-table-column prop="season" label="季节" align="center" > </el-table-column>
+          <el-table-column prop="map" label="地图" align="center" > </el-table-column>        
         </el-table>
       </div>
       <div class="mytab" v-if="tab.current == 3" id="mytab3">
         <div>
-          <div class="info" >
-            <img alt="兑换树" src="../assets/img/ancestor/13.png" class="duihuanTree"  @touch-start="gtouchstart()" @touch-end="showDeleteButton()"/>
-            <div><img alt="上一张" src="../components/likeit/img/icon/last.png" class="huantu"/>
-              <img alt="下一张" src="../components/likeit/img/icon/next.png" class="huantu"/>
+          <p style="font-size: 2rem">Unfinished</p>
+          <div class="info">
+            <img alt="兑换树" src="../assets/img/ancestor/13.png" class="duihuanTree">
+            <div><img alt="上一张" src="../assets/img/icon/last.png" class="huantu"/>
+              <img alt="下一张" src="../assets/img/icon/next.png" class="huantu"/>
             </div>
-          </div>
-        </div>
-        <div class="pan">
-          <div class="kid">
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season1_x.png"
-            />
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season7_x.png"
-            />
-          </div>
-          <div class="kid">
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season2_x.png"
-            />
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season8_x.png"
-            />
-          </div>
-          <div class="kid">
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season3_x.png"
-            />
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season9_x.png"
-            />
-          </div>
-          <div class="kid">
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season4_x.png"
-            />
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season10_x.png"
-            />
-          </div>
-          <div class="kid">
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season5_x.png"
-            />
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season11_x.png"
-            />
-          </div>
-          <div class="kid">
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season6_x.png"
-            />
-            <img
-              class="seasonIcon"
-              alt="seasonIcon"
-              src="../components/likeit/img/icon/season12_x.png"
-            />
           </div>
         </div>
       </div>
@@ -137,7 +69,7 @@
     <el-dialog :width="400" :showClose="false" v-model.lazy="visible2" v-if="visible2" :close-on-click-modal="false"
       id="dialog2">
       <evan-rotateloading id="loading"></evan-rotateloading>
-      <div>{{ dialog2 }}</div>
+      <div id="text">{{ dialog2 }}</div>
     </el-dialog>
     <el-dialog title="调整源参数的权重" :width="400" :showClose="false" v-model.lazy="visible3" :close-on-click-modal="false"
       v-if="visible3" id="dialog3">
@@ -188,33 +120,6 @@ async function init() {
 let xwidth = window.screen.width;
 document.documentElement.style.setProperty("--screenWidth", xwidth + "px");
 
-let timeOutEvent = null //定时器
-let duihuanTreeScale = 1;
-//长按事件设置定时器
-let gtouchstart=()=>{
-        console.log("click")
-        timeOutEvent= setTimeout(()=>{
-            longPress()
-        },200)
-    }
-    //手释放，如果在200毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件
-    let showDeleteButton=()=>{
-      duihuanTreeScale =1;
-        clearTimeout(timeOutEvent); //清除定时器
-        if (timeOutEvent != 0) {
-          duihuanTreeScale =1;
-        }
-        document.documentElement.style.setProperty("--dhTree", duihuanTreeScale);
-        return false;
-    }
-//真正长按后应该执行的内容
-    let longPress=()=> {
-        timeOutEvent = 0
-        duihuanTreeScale = 1.5;
-        document.documentElement.style.setProperty("--dhTree", duihuanTreeScale);
-        // alert("长按了")
-    }
-
 let model;
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 let data = require("../assets/data/history.json");
@@ -224,7 +129,7 @@ let ancestors = Array;
 let record = require("../assets/data/record.json");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 ancestors = require("../assets/data/ancestor.json");
-console.log(ancestors.find(o => o.id === 1));
+// console.log(ancestors.find(o => o.id === 1));
 const modelTmp = tf.sequential();
 modelTmp.add(
   tf.layers.dense({
@@ -240,6 +145,7 @@ modelTmp.compile({
 tfvis.show.fitCallbacks({ name: "训练效果" }, ["loss"]);
 init();
 export default {
+  name: "skypre",
   components: { evanRotateloading, evanTabsVue },
   data() {
     return {
@@ -275,7 +181,8 @@ export default {
         { id: 6, name: '禁阁' },
       ],
       tab: {
-        current: 1,
+        current: 2,
+        currentName: '历史复刻'
       },
       dialog2: '',
       result: [],
@@ -285,8 +192,8 @@ export default {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mounted() {
     let rds = [];
-    for (let i = 0; i < record.length; i++) {
-      let a = ancestors.filter(o => o.id === record[i].f2)[0];
+    for (let element of record) {
+      let a = ancestors.filter(o => o.id === element.f2)[0];
       //console.log(a);
       let rd = {
       id: Number,
@@ -296,22 +203,37 @@ export default {
       map: string,
       count: Number
     };
-        rd.id = record[i].f1;
+        rd.id = element.f1;
         rd.name = a.name;
         let leave;
-        if(record[i].f3 != -1){
-          leave = record[i].f3;
+        if(element.f3 != -1){
+          leave = element.f3;
         }else {
           leave = '未曾复刻';
         }
         rd.leave = leave;
         rd.season = a.seasonname;
         rd.map = this.maps[a.mapid-1].name;
-        rd.count = record[i].f8;
+        rd.count = element.f8;
         rds.push(rd);
     }
     this.recordCN = rds;
-    console.log(this.recordCN);
+    // console.log(this.recordCN);
+  },
+  watch: {
+    'tab.current': {
+      handler(newVal){
+        if(newVal==1){
+          this.tab.currentName = "预测结果";
+        }else if(newVal==2){
+          this.tab.currentName = "历史复刻";
+        }else {
+          this.tab.currentName = "先祖图鉴";
+        }
+      },
+      immediate: true,
+      deep: true
+    }
   },
   methods: {
     async train() {
@@ -319,8 +241,8 @@ export default {
       this.visible2 = true;
       model = null;
       let isChangeRatio = false;
-      for (let i = 0; i < this.ratios.length; i++) {
-        if(this.ratios[i].ratio != 1){
+      for (let element of this.ratios) {
+        if(element.ratio != 1){
           isChangeRatio = true;
           break;
         }
@@ -348,74 +270,77 @@ export default {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       this.dialog2 = "正在预测中请稍后..."
       this.visible2 = true;
-      this.pre.p1 = record.length;
-      let result = [];
-      let ancestorNum = ancestors.length;
-      for (let i = 0; i < ancestorNum; i++) {
-        //console.log('--------------------')
-        //console.log('id: ' + ancestors[i].id + ' name: ' + ancestors[i].name);
-        let rds = record.filter(o => o.f2 === i + 1);
-        let retro = rds.length;
-        //console.log("复刻次数: " + retro)
-
-        this.pre.p2 = ancestors[i].id
-        if (retro != 0) {
-          this.pre.p3 = this.pre.p1 - rds[rds.length - 1].f1
-        } else {
-          this.pre.p3 = -1
-        }
-        this.pre.p4 = ancestors[i].seasonid
-        this.pre.p5 = ancestors[i].mapid
-        this.pre.p6 = ancestors[i].hotscore
-        this.pre.p7 = 0
-        this.pre.p8 = ancestors[i].retro + 1
-
-        let preInputs = tf.tensor([[
-          this.pre.p1 * this.ratios[0].ratio,
-          this.pre.p2 * this.ratios[1].ratio,
-          this.pre.p3 * this.ratios[2].ratio,
-          this.pre.p4 * this.ratios[3].ratio,
-          this.pre.p5 * this.ratios[4].ratio,
-          this.pre.p6 * this.ratios[5].ratio,
-          this.pre.p7 * this.ratios[6].ratio,
-          this.pre.p8 * this.ratios[7].ratio
-        ]]);
-        let pred = model.predict(preInputs).dataSync()[0].toFixed(8);
-        let pre_rs = {
-          rank: Number,
-          id: Number,
-          name: string,
-          result: Number,
-          season: string,
-          map: string,
-          hot: Number,
-          retro: Number
-        }
-        pre_rs.id = ancestors[i].id
-        pre_rs.name = ancestors[i].name
-        pre_rs.result = pred
-        pre_rs.season = ancestors[i].seasonname
-        pre_rs.map = this.maps[ancestors[i].mapid-1].name
-        pre_rs.hot = ancestors[i].hotscore
-        pre_rs.retro = ancestors[i].retro
-        result.push(pre_rs);
-        console.log(pre_rs);
-      }
-      result = quickSort(result);
-      for(let j = 0 ; j < result.length ; j++){
-        result[j].rank = j + 1;
-      }
-      // console.log('JS快排后');
-      this.result = result;
-      await this.$nextTick(() => {
-        this.$refs.tableref.doLayout()
-      })
-      this.visible2 = false;
-      this.visible = true;
-      //console.log(result);
-      //let pred = model.predict(tf.tensor([[this.pre.p1 * 1, this.pre.p2 * 1, this.pre.p3 * 1, this.pre.p4 * 1, this.pre.p5 * 1, this.pre.p6 * 1, this.pre.p7 * 1, this.pre.p8 * 1]])).dataSync()[0];
-      //this.result = pred;
+      setTimeout(this.premain, 5000);
     },
+    async premain(){
+        this.pre.p1 = record.length;
+        let result = [];
+        let ancestorNum = ancestors.length;
+        for (let i = 0; i < ancestorNum; i++) {
+          //console.log('--------------------')
+          //console.log('id: ' + ancestors[i].id + ' name: ' + ancestors[i].name);
+          let rds = record.filter(o => o.f2 === i + 1);
+          let retro = rds.length;
+          //console.log("复刻次数: " + retro)
+
+          this.pre.p2 = ancestors[i].id
+          if (retro != 0) {
+            this.pre.p3 = this.pre.p1 - rds[rds.length - 1].f1
+          } else {
+            this.pre.p3 = -1
+          }
+          this.pre.p4 = ancestors[i].seasonid
+          this.pre.p5 = ancestors[i].mapid
+          this.pre.p6 = ancestors[i].hotscore
+          this.pre.p7 = 0
+          this.pre.p8 = ancestors[i].retro + 1
+
+          let preInputs = tf.tensor([[
+            this.pre.p1 * this.ratios[0].ratio,
+            this.pre.p2 * this.ratios[1].ratio,
+            this.pre.p3 * this.ratios[2].ratio,
+            this.pre.p4 * this.ratios[3].ratio,
+            this.pre.p5 * this.ratios[4].ratio,
+            this.pre.p6 * this.ratios[5].ratio,
+            this.pre.p7 * this.ratios[6].ratio,
+            this.pre.p8 * this.ratios[7].ratio
+          ]]);
+          let pred = await model.predict(preInputs).dataSync()[0].toFixed(8);
+          this.visible2 = false;
+          let pre_rs = {
+            rank: Number,
+            id: Number,
+            name: string,
+            result: Number,
+            season: string,
+            map: string,
+            hot: Number,
+            retro: Number
+          }
+          pre_rs.id = ancestors[i].id
+          pre_rs.name = ancestors[i].name
+          pre_rs.result = pred
+          pre_rs.season = ancestors[i].seasonname
+          pre_rs.map = this.maps[ancestors[i].mapid-1].name
+          pre_rs.hot = ancestors[i].hotscore
+          pre_rs.retro = ancestors[i].retro
+          result.push(pre_rs);
+          // console.log(pre_rs);
+        }
+        result = quickSort(result);
+        for(let j = 0 ; j < result.length ; j++){
+          result[j].rank = j + 1;
+        }
+        // console.log('JS快排后');
+        this.result = result;
+        await this.$nextTick(async () => {
+          await this.$refs.tableref.doLayout()
+        })
+        this.visible = true;
+        //console.log(result);
+        //let pred = model.predict(tf.tensor([[this.pre.p1 * 1, this.pre.p2 * 1, this.pre.p3 * 1, this.pre.p4 * 1, this.pre.p5 * 1, this.pre.p6 * 1, this.pre.p7 * 1, this.pre.p8 * 1]])).dataSync()[0];
+        //this.result = pred;
+       },
     save() {
       model.save('downloads://skypre-model');
     },
@@ -426,21 +351,27 @@ export default {
         this.visible3 = false;
       }
     },
-    sliteTab() {
-      // alert(this.tab.current)
+    sliteTab(tab) {
+      this.tab.current = tab;
     },
-  },
-  watch: {
-    visible: {
-      // 此处监听variable变量，当期有变化时执行
-      handler(item1, item2) {
-        console.log("新: " + item1 + "旧: " + item2);
-      }
+    switchSeason(name) {
+      alert(name);
     }
   }
 }
 </script>
 <style lang="scss">
+#tabname {
+  font-size: 1.5rem;
+}
+@media screen and (max-width: 1000px) {
+  #tabname {
+    font-size: 1rem;
+  }
+  #dialog1 {
+    width: 80vw;
+  }
+}
 #dog3remark {
   font-size: small;
   color: rgb(193, 188, 188);
@@ -451,12 +382,24 @@ export default {
   margin-top: -30px;
 }
 
+@media screen and (max-width: 1000px) {
+  .css-q2ki5z,
+  [data-css-q2ki5z] {
+    display: none;
+  }
+}
+
 #elbtn1 {
   margin-top: 15px;
 }
 
 .trainBox > * {
   display: inline;
+}
+
+.trainBox > p {
+  position: absolute;
+  left: 16px;
 }
 
 .main {
@@ -489,6 +432,7 @@ export default {
 //   right: unset;
 //   top: 500px;
 // }
+
 /deep/ th.gutter {
   display: table-cell !important;
 }
@@ -496,7 +440,7 @@ export default {
 .el-table tbody tr:hover > td {
   background: #2b2a2a !important;
   color: white;
-  font-size: calc(2rem);
+  // font-size: calc(1.5rem);
 }
 
 .el-table tbody tr td .cell {
@@ -507,6 +451,9 @@ export default {
 // #table {
 //   font-family: STHupo;
 // }
+.el-table {
+  --el-table-border: none;
+}
 
 .main {
   background: #171717;
@@ -547,7 +494,7 @@ export default {
 
 .el-table tbody tr:hover .el-tag {
   color: white;
-  font-size: 2rem;
+  // font-size: 2rem;
   font-family: STHupo, sans-serif;
   cursor: pointer;
   background-color: #2b2a2a;
@@ -555,7 +502,7 @@ export default {
 
 .el-table .cell:hover .el-tag {
   color: white;
-  font-size: 2rem;
+  // font-size: 2rem;
   font-family: STHupo, sans-serif;
   cursor: pointer;
   background-color: #2b2a2a;
@@ -568,92 +515,41 @@ export default {
   // border: 2px solid green;
 }
 
-// #tabs {
-//   position: relative;
-//   top: 0;
-//   z-index: 1;
-// }
+#tabs {
+  margin-top: 16px;
+}
+
 #mytab3 {
   position: relative;
 }
 .seasonIcon {
   transition: all 0.5s ease;
 }
+:deep #dialog2 {
+  background: none;
+}
 </style>
 <style lang="scss" scoped>
-.pan {
-  // background: aqua;
-  width: 600px;
-  height: 600px;
-  position: relative;
-  margin: auto;
-  top: 0px;
-  padding: 0;
-  overflow: visible;
-
-  :root {
-    --panAngle: 90deg;
-  }
-  > .kid {
-    margin: 0;
-    padding: 0;
-    text-align: left;
-    position: absolute;
-    // background: yellowgreen;
-    width: 600px;
-    height: 100px;
-    left: 0px;
-    top: 250px;
-
-    > .seasonIcon {
-      width: 70px;
-      height: 70px;
-      position: absolute;
-      padding: 10px;
-      top: 17.5px;
-      transform: rotate(-90deg);
-      transition: all 0.3s ease(0.1, 0.4, 0.4, 0.1);
-      &:hover {
-        cursor: pointer;
-        scale: 1.8;
-      }
-      &:active {
-        scale: 1.4;
-      }
-    }
-
-    :nth-child(2) {
-      right: 0;
-      transform: rotate(90deg);
-    }
-  }
-  :nth-child(1) {
-    transform: rotate(90deg);
-  }
-  :nth-child(2) {
-    transform: rotate(120deg);
-  }
-  :nth-child(3) {
-    transform: rotate(150deg);
-  }
-  :nth-child(4) {
-    transform: rotate(180deg);
-  }
-  :nth-child(5) {
-    transform: rotate(210deg);
-  }
-  :nth-child(6) {
-    transform: rotate(240deg);
+#text {
+  color: hsl(0, 0%, 70%);
+}
+#t2name {
+  &:hover {
+    cursor: pointer;
   }
 }
+
 :root {
   --screenWidth: 500px;
 }
 .info {
   position: absolute;
   z-index: 999;
-  top: 175px;
+  top: 50px;
   left: calc((var(--screenWidth) - 550px) / 2 - 185px - 20px);
+  @media screen and (max-width: 1000px) {
+    left: calc(var(--screenWidth) / 2 - 185px - 20px);
+  }
   // border: 1px white solid;
 
   width: 370px;
@@ -684,7 +580,7 @@ export default {
       // display: none;
       z-index: 10000;
       position: absolute;
-      top: 70px;
+      top: 75px;
       width: 100px;
     }
   }

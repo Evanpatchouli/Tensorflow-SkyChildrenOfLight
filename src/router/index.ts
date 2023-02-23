@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-// import Home from "../views/Home.vue";
-import skypreVue from "../views/skypre.vue";
+import Home from "../views/Home.vue";
+import skypre from "../views/skypre.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
-    component: skypreVue,
+    component: Home,
+    // redirect: "/skypre",
+  },
+  {
+    path: "/skypre",
+    name: "skypre",
+    component: skypre,
   },
   {
     path: "/about",
@@ -18,19 +24,9 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
-    path: "/DEMO1",
-    name: "DEMO1",
-    component: () => import("../views/demo1.vue"),
-  },
-  {
-    path: "/DEMO2",
-    name: "DEMO2",
-    component: () => import("../views/demo2.vue"),
-  },
-  {
-    path: "/DEMO3",
-    name: "DEMO3",
-    component: () => import("../views/demo3.vue"),
+    path: "/tensorflow",
+    name: "tensorflow",
+    component: () => import("../views/Tensor.vue"),
   },
   {
     path: "/test",

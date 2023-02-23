@@ -9,7 +9,7 @@
       <div>
         <a href="#">{{ item.text }}</a>
       </div>
-      <div><img alt="icon" src="./img/icon/TechCircle.png" /></div>
+      <div><img alt="icon" src="@/assets/img/icon/TechCircle.svg" /></div>
     </div>
   </div>
 </template>
