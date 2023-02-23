@@ -1,9 +1,9 @@
-# 光遇复刻档案馆
+# Archives Of Traveling Ancestors
 
-#### 介绍
-光遇复刻档案馆，记录历史复刻，采用Tensorflow.js作为机器学习引擎，对历史复刻数据样本进行深度学习，并预测下一期可能要复刻的先祖，预测结果仅供娱乐
+## Info
+Archives Of Traveling Ancestors，is a web to record every traveling ancestor in Android Sky:Children Of Light. Besides, this web use Tensoflow.js to train from the traveling history and try to predict the next traveling ancestor just for fun.
 
-#### 技术栈
+## Technology Stack
 
 Vue.js 3.xx  
 Tensorflow.js  
@@ -12,10 +12,6 @@ Vuex
 Element-Plus  
 Sass
 
-#### 参与贡献
-如果您对界面UI有更好的想法，或是愿意改善训练算法，欢迎加入维护本项目
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+## Contribute
+If you have some good ideas of this web UI of you wanna improve the trained model  
+Just fork it and pull request, it willed be accepeted if I think you do a good contribution.

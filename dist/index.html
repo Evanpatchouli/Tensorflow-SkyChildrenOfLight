@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/TensorflowSkyPredict.github.io/favicon.ico"><link href="../src/assets/css/stylesheet.css" rel="stylesheet"><title>sky-pre</title><script>let xwidth = window.screen.width;
+      document.documentElement.style.setProperty("--screenWidth", xwidth + "px");
+      function resetWidth() {
+        xwidth = window.screen.width;
+        document.documentElement.style.setProperty("--screenWidth", xwidth + "px");
+      }
+      //window.addEventListener('resize', resetWidth);
+      const debounce = (fn, delay) => {
+        let timer;
+        return function() {
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(() => {
+            fn();
+          }, delay);
+        }
+      };
+      const cancalDebounce = debounce(resetWidth, 100);
+
+      window.addEventListener('resize', cancalDebounce);</script><link href="/TensorflowSkyPredict.github.io/css/about.a37b8225.css" rel="prefetch"><link href="/TensorflowSkyPredict.github.io/css/chunk-144eda54.760b9740.css" rel="prefetch"><link href="/TensorflowSkyPredict.github.io/js/about.8f02a245.js" rel="prefetch"><link href="/TensorflowSkyPredict.github.io/js/chunk-144eda54.3d9c16a1.js" rel="prefetch"><link href="/TensorflowSkyPredict.github.io/js/chunk-2d0b30b7.7aeb5e59.js" rel="prefetch"><link href="/TensorflowSkyPredict.github.io/css/app.5808a138.css" rel="preload" as="style"><link href="/TensorflowSkyPredict.github.io/css/chunk-vendors.29e6e5d8.css" rel="preload" as="style"><link href="/TensorflowSkyPredict.github.io/js/app.4de8af5a.js" rel="preload" as="script"><link href="/TensorflowSkyPredict.github.io/js/chunk-vendors.b0c05dee.js" rel="preload" as="script"><link href="/TensorflowSkyPredict.github.io/css/chunk-vendors.29e6e5d8.css" rel="stylesheet"><link href="/TensorflowSkyPredict.github.io/css/app.5808a138.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but sky-pre doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="/TensorflowSkyPredict.github.io/js/chunk-vendors.b0c05dee.js"></script><script src="/TensorflowSkyPredict.github.io/js/app.4de8af5a.js"></script></body></html>
