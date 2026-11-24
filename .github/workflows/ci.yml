@@ -1,0 +1,29 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - name: Validate archive and generated prediction
+        run: npm run data:check
+      - name: Run backtest regression tests
+        run: npm run data:test
+      - name: Type-check and build
+        run: npm run build
+      - run: npx playwright install chromium --with-deps --only-shell
+      - run: npm run smoke:static

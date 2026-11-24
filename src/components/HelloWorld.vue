@@ -79,20 +79,13 @@
   </div>
 </template>
 
-<script lang="ts">
-import router from "@/router";
-import { Options, Vue } from "vue-class-component";
+<script setup lang="ts">
+import { useRouter } from "vue-router";
 
-@Options({
-  props: {
-    msg: String,
-  },
-})
-export default class HelloWorld extends Vue {
-  msg!: string;
-  public start(): void {
-    router.push("/skypre");
-  }
+const router = useRouter();
+
+function start(): void {
+  void router.push("/skypre");
 }
 </script>
 

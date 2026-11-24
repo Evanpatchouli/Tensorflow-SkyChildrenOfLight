@@ -1,84 +1,25 @@
 <template>
-  <div class="container">
-    <div class="loader" style="margin-right: 200px">
-      <span style="--i: 1"></span>
-      <span style="--i: 2"></span>
-      <span style="--i: 3"></span>
-      <span style="--i: 4"></span>
-      <span style="--i: 5"></span>
-      <span style="--i: 6"></span>
-      <span style="--i: 7"></span>
-      <span style="--i: 8"></span>
-      <span style="--i: 9"></span>
-      <span style="--i: 10"></span>
-      <span style="--i: 11"></span>
-      <span style="--i: 12"></span>
-      <span style="--i: 13"></span>
-      <span style="--i: 14"></span>
-      <span style="--i: 15"></span>
-      <span style="--i: 16"></span>
-      <span style="--i: 17"></span>
-      <span style="--i: 18"></span>
-      <span style="--i: 19"></span>
-      <span style="--i: 20"></span>
+  <div class="container" :style="{ '--color': `#${colorx}`, '--side': `${side}px`, '--radius': `${radius}px` }">
+    <div class="loader">
+      <span v-for="index in 20" :key="index" :style="{ '--i': index }"></span>
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: "evanRotateloading",
-  props: {
-    colorx: {
-      type: String,
-      default: "5656e3",
-    },
-    side: {
-      type: Number,
-      default: 120,
-    },
-    radius: {
-      type: Number,
-      default: 5,
-    },
-  },
-  data() {
-    return {
-      itself: {
-        color: this.colorx,
-        side: this.side,
-        radius: this.radius,
-      },
-    };
-  },
-  mounted() {
-    console.log(this.itself.color);
-    document.documentElement.style.setProperty(
-      "--color",
-      "#" + this.itself.color
-    );
-    document.documentElement.style.setProperty(
-      "--side",
-      this.itself.side + "px"
-    );
-    document.documentElement.style.setProperty(
-      "--radius",
-      this.itself.radius + "px"
-    );
-  },
-};
+<script setup lang="ts">
+defineOptions({ name: "evanRotateloading" });
+
+const { colorx = "5656e3", side = 120, radius = 5 } = defineProps<{
+  colorx?: string;
+  side?: number;
+  radius?: number;
+}>();
 </script>
-<style>
-:root {
-  --side: 120px;
-  --radius: 5px;
-  --color: #5656e3;
-}
+<style scoped>
 .container {
   width: var(--side);
   height: var(--side);
 }
 .container .loader {
-  /* border: black 1px solid; */
   position: relative;
   width: 100%;
   height: 100%;
