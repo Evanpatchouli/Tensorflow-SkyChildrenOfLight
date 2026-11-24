@@ -14,11 +14,11 @@ from PIL import Image
 
 
 ASSETS = Path(__file__).resolve().parent
-# 新增隶书标签时在这里补字。
+# 新增使用档案馆隶书字体的标题时在这里补字。
 DISPLAY_TEXT = (
     "光遇·复刻档案馆"  # 首页标题，也用于导航
     "关于tensorflow"  # 其余导航链接
-    "预测结果历史复刻先祖图鉴"  # 档案页的三个标签
+    "历史复刻下期预测模型实验"  # 档案馆的页面标题
 )
 
 

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory, type RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -6,22 +6,32 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Home",
     component: Home,
-    // redirect: "/skypre",
   },
   {
     path: "/skypre",
-    name: "skypre",
-    component: () =>
-      import(/* webpackChunkName: "skypre" */ "../views/skypre.vue"),
+    component: () => import("../views/skypre.vue"),
+    children: [
+      {
+        path: "",
+        name: "skypre",
+        component: () => import("../views/RetroHistory.vue"),
+      },
+      {
+        path: "prediction",
+        name: "skypre-prediction",
+        component: () => import("../views/RetroPrediction.vue"),
+      },
+      {
+        path: "experiment",
+        name: "skypre-experiment",
+        component: () => import("../views/RetroExperiment.vue"),
+      },
+    ],
   },
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    component: () => import("../views/About.vue"),
   },
   {
     path: "/tensorflow",
@@ -41,7 +51,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 

@@ -1,7 +1,12 @@
 # Archives Of Traveling Ancestors
 
 ## Info
-Archives Of Traveling Ancestors，is a web to record every traveling ancestor in Android Sky:Children Of Light. Besides, this web use Tensoflow.js to train from the traveling history and try to predict the next traveling ancestor just for fun.
+
+An archive of Traveling Ancestors in the Chinese edition of Sky: Children of the Light. It follows the Android timeline before the platform merge and the shared Chinese server afterward.
+
+- `/skypre` shows searchable historical records and their sources.
+- `/skypre/prediction` shows a static ranking for the next period after the archive cutoff, with rolling backtests and candidate coverage. The ranking is for entertainment.
+- `/skypre/experiment` runs the legacy 68-candidate TensorFlow.js model and lets you train a temporary model with adjustable feature weights.
 
 ## Technology Stack
 
