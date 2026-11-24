@@ -54,6 +54,27 @@
       "note": "同一返场采用两位先祖的物品。两位 ID 由项目原档保存，社区索引以抛球杂耍一条登记。"
     },
     {
+      "id": "cn-android-2020-11-05-video",
+      "kind": "community",
+      "title": "安卓国服复刻实录 · 11 月 5 日蟹语者",
+      "url": "https://www.bilibili.com/video/BV1Gz4y1Q75U/?p=13",
+      "note": "安卓国服实录第 13 段记载 11 月 5 日来访及对应兑换物品，合集说明该时段为周四至次周一。"
+    },
+    {
+      "id": "cn-2020-11-05-4399",
+      "kind": "community",
+      "title": "4399 光遇 · 11 月 5 日复刻兑换表",
+      "url": "https://news.4399.com/skygy/wenda/m/927397.html",
+      "note": "2020 年 11 月 4 日的报道明确记载蟹语者从 11 月 5 日中午开放兑换至 11 月 9 日中午。"
+    },
+    {
+      "id": "cn-2020-11-05-duote",
+      "kind": "community",
+      "title": "多特游戏 · 11 月 5 日旅行先祖介绍",
+      "url": "https://m.duote.com/tech/guangyu/132274.html",
+      "note": "2020 年 11 月 4 日的报道将蟹语者来访记为双平台周四中午至下周一中午。"
+    },
+    {
       "id": "cn-announcement-79",
       "kind": "official",
       "title": "Sky 光·遇 · 1 月 12 日旅行先祖公告",
@@ -866,17 +887,21 @@
       "server": "cn",
       "platform": "android",
       "kind": "traveling",
-      "startDate": "2020-11-02",
-      "endDate": "2020-11-06",
+      "startDate": "2020-11-05",
+      "endDate": "2020-11-09",
       "announcedAt": null,
       "ancestorIds": [
         11
       ],
       "sourceIds": [
+        "cn-android-2020-11-05-video",
+        "cn-2020-11-05-4399",
+        "cn-2020-11-05-duote",
         "legacy-record",
         "cn-travel-index"
       ],
-      "recordStatus": "archive-index"
+      "recordStatus": "archive-index",
+      "note": "社区索引记为 11 月 2 日至 6 日。活动日期采同期报道和安卓实录交叉核对结果。"
     },
     {
       "id": "cn-14",
