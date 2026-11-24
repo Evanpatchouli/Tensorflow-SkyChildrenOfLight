@@ -1,0 +1,725 @@
+{
+  "version": "cn-replay-v1",
+  "archiveVersion": "cn-android-travel-v1",
+  "archiveSha256": "7fde15f2c340d0cdc009304d8c069e5230cf048e5ae5b38e049250b05f7b85c4",
+  "target": {
+    "period": 84,
+    "eventId": null,
+    "startDate": null,
+    "kind": "traveling",
+    "realizedAncestorIds": [],
+    "sourceIds": []
+  },
+  "asOf": {
+    "date": "2023-02-23",
+    "beforeAnnouncement": null,
+    "lastPeriod": 83,
+    "lastEventDate": "2023-02-23"
+  },
+  "scope": {
+    "id": "observed-repeat-pool",
+    "label": "已复刻先祖代理池",
+    "description": "按档案截止时已观测的普通旅行复刻构建代理池，并纳入有时点证据的候选资格。首次复刻可能排在池外。",
+    "fullEligibilityAvailable": false,
+    "candidateCount": 48,
+    "verifiedEligibleCount": 0
+  },
+  "method": {
+    "id": "longest-wait",
+    "label": "最长等待排序",
+    "scoreLabel": "等待档数",
+    "description": "按距上次普通旅行复刻的已观测档数降序，同分按先祖编号升序。",
+    "selectionReason": "当前档案的候选资格与公告时点样本有限，正式档案推演固定使用最长等待规则。"
+  },
+  "ranking": [
+    {
+      "rank": 1,
+      "ancestorId": 5,
+      "score": 69,
+      "waitPeriods": 69,
+      "previousReturns": 1
+    },
+    {
+      "rank": 2,
+      "ancestorId": 7,
+      "score": 67,
+      "waitPeriods": 67,
+      "previousReturns": 2
+    },
+    {
+      "rank": 3,
+      "ancestorId": 12,
+      "score": 65,
+      "waitPeriods": 65,
+      "previousReturns": 1
+    },
+    {
+      "rank": 4,
+      "ancestorId": 2,
+      "score": 60,
+      "waitPeriods": 60,
+      "previousReturns": 1
+    },
+    {
+      "rank": 5,
+      "ancestorId": 27,
+      "score": 59,
+      "waitPeriods": 59,
+      "previousReturns": 1
+    },
+    {
+      "rank": 6,
+      "ancestorId": 10,
+      "score": 56,
+      "waitPeriods": 56,
+      "previousReturns": 1
+    },
+    {
+      "rank": 7,
+      "ancestorId": 6,
+      "score": 49,
+      "waitPeriods": 49,
+      "previousReturns": 2
+    },
+    {
+      "rank": 8,
+      "ancestorId": 38,
+      "score": 46,
+      "waitPeriods": 46,
+      "previousReturns": 1
+    },
+    {
+      "rank": 9,
+      "ancestorId": 31,
+      "score": 44,
+      "waitPeriods": 44,
+      "previousReturns": 1
+    },
+    {
+      "rank": 10,
+      "ancestorId": 1,
+      "score": 41,
+      "waitPeriods": 41,
+      "previousReturns": 3
+    },
+    {
+      "rank": 11,
+      "ancestorId": 4,
+      "score": 40,
+      "waitPeriods": 40,
+      "previousReturns": 3
+    },
+    {
+      "rank": 12,
+      "ancestorId": 39,
+      "score": 39,
+      "waitPeriods": 39,
+      "previousReturns": 1
+    },
+    {
+      "rank": 13,
+      "ancestorId": 18,
+      "score": 37,
+      "waitPeriods": 37,
+      "previousReturns": 3
+    },
+    {
+      "rank": 14,
+      "ancestorId": 37,
+      "score": 36,
+      "waitPeriods": 36,
+      "previousReturns": 1
+    },
+    {
+      "rank": 15,
+      "ancestorId": 15,
+      "score": 34,
+      "waitPeriods": 34,
+      "previousReturns": 2
+    },
+    {
+      "rank": 16,
+      "ancestorId": 22,
+      "score": 33,
+      "waitPeriods": 33,
+      "previousReturns": 1
+    },
+    {
+      "rank": 17,
+      "ancestorId": 44,
+      "score": 32,
+      "waitPeriods": 32,
+      "previousReturns": 1
+    },
+    {
+      "rank": 18,
+      "ancestorId": 41,
+      "score": 31,
+      "waitPeriods": 31,
+      "previousReturns": 1
+    },
+    {
+      "rank": 19,
+      "ancestorId": 29,
+      "score": 30,
+      "waitPeriods": 30,
+      "previousReturns": 2
+    },
+    {
+      "rank": 20,
+      "ancestorId": 21,
+      "score": 29,
+      "waitPeriods": 29,
+      "previousReturns": 2
+    },
+    {
+      "rank": 21,
+      "ancestorId": 9,
+      "score": 28,
+      "waitPeriods": 28,
+      "previousReturns": 2
+    },
+    {
+      "rank": 22,
+      "ancestorId": 30,
+      "score": 27,
+      "waitPeriods": 27,
+      "previousReturns": 2
+    },
+    {
+      "rank": 23,
+      "ancestorId": 42,
+      "score": 26,
+      "waitPeriods": 26,
+      "previousReturns": 1
+    },
+    {
+      "rank": 24,
+      "ancestorId": 11,
+      "score": 25,
+      "waitPeriods": 25,
+      "previousReturns": 2
+    },
+    {
+      "rank": 25,
+      "ancestorId": 20,
+      "score": 24,
+      "waitPeriods": 24,
+      "previousReturns": 2
+    },
+    {
+      "rank": 26,
+      "ancestorId": 36,
+      "score": 23,
+      "waitPeriods": 23,
+      "previousReturns": 2
+    },
+    {
+      "rank": 27,
+      "ancestorId": 25,
+      "score": 22,
+      "waitPeriods": 22,
+      "previousReturns": 2
+    },
+    {
+      "rank": 28,
+      "ancestorId": 32,
+      "score": 21,
+      "waitPeriods": 21,
+      "previousReturns": 1
+    },
+    {
+      "rank": 29,
+      "ancestorId": 50,
+      "score": 20,
+      "waitPeriods": 20,
+      "previousReturns": 1
+    },
+    {
+      "rank": 30,
+      "ancestorId": 35,
+      "score": 19,
+      "waitPeriods": 19,
+      "previousReturns": 2
+    },
+    {
+      "rank": 31,
+      "ancestorId": 23,
+      "score": 18,
+      "waitPeriods": 18,
+      "previousReturns": 2
+    },
+    {
+      "rank": 32,
+      "ancestorId": 28,
+      "score": 17,
+      "waitPeriods": 17,
+      "previousReturns": 2
+    },
+    {
+      "rank": 33,
+      "ancestorId": 34,
+      "score": 16,
+      "waitPeriods": 16,
+      "previousReturns": 2
+    },
+    {
+      "rank": 34,
+      "ancestorId": 19,
+      "score": 15,
+      "waitPeriods": 15,
+      "previousReturns": 2
+    },
+    {
+      "rank": 35,
+      "ancestorId": 14,
+      "score": 14,
+      "waitPeriods": 14,
+      "previousReturns": 2
+    },
+    {
+      "rank": 36,
+      "ancestorId": 24,
+      "score": 13,
+      "waitPeriods": 13,
+      "previousReturns": 2
+    },
+    {
+      "rank": 37,
+      "ancestorId": 33,
+      "score": 12,
+      "waitPeriods": 12,
+      "previousReturns": 2
+    },
+    {
+      "rank": 38,
+      "ancestorId": 26,
+      "score": 11,
+      "waitPeriods": 11,
+      "previousReturns": 2
+    },
+    {
+      "rank": 39,
+      "ancestorId": 45,
+      "score": 10,
+      "waitPeriods": 10,
+      "previousReturns": 1
+    },
+    {
+      "rank": 40,
+      "ancestorId": 46,
+      "score": 9,
+      "waitPeriods": 9,
+      "previousReturns": 1
+    },
+    {
+      "rank": 41,
+      "ancestorId": 40,
+      "score": 8,
+      "waitPeriods": 8,
+      "previousReturns": 2
+    },
+    {
+      "rank": 42,
+      "ancestorId": 17,
+      "score": 7,
+      "waitPeriods": 7,
+      "previousReturns": 3
+    },
+    {
+      "rank": 43,
+      "ancestorId": 56,
+      "score": 6,
+      "waitPeriods": 6,
+      "previousReturns": 1
+    },
+    {
+      "rank": 44,
+      "ancestorId": 13,
+      "score": 5,
+      "waitPeriods": 5,
+      "previousReturns": 2
+    },
+    {
+      "rank": 45,
+      "ancestorId": 16,
+      "score": 4,
+      "waitPeriods": 4,
+      "previousReturns": 3
+    },
+    {
+      "rank": 46,
+      "ancestorId": 52,
+      "score": 3,
+      "waitPeriods": 3,
+      "previousReturns": 1
+    },
+    {
+      "rank": 47,
+      "ancestorId": 3,
+      "score": 2,
+      "waitPeriods": 2,
+      "previousReturns": 2
+    },
+    {
+      "rank": 48,
+      "ancestorId": 8,
+      "score": 1,
+      "waitPeriods": 1,
+      "previousReturns": 2
+    }
+  ],
+  "backtest": {
+    "scope": "对档案中有结果的旅行档与集体档分别评分。首次复刻仍计入分母，随机基线取均匀无放回抽取的期望值。",
+    "windows": [
+      {
+        "id": "archive-order",
+        "label": "按档号滚动回测",
+        "firstPeriod": 41,
+        "lastPeriod": 83,
+        "clock": "archive-order",
+        "kind": "traveling",
+        "observedPeriods": 43,
+        "evaluatedPeriods": 43,
+        "actualCount": 43,
+        "coveredCount": 28,
+        "coldStartCount": 15,
+        "multiAncestorPeriods": 0,
+        "verifiedEligibleCount": 0,
+        "metrics": [
+          {
+            "method": "random",
+            "k": 1,
+            "hits": 0.6618441075361521,
+            "denominator": 43,
+            "hitRate": 0.015391723431073305,
+            "matchedAncestors": 0.661844107536152,
+            "actualCount": 43,
+            "recall": 0.015391723431073302,
+            "completeHits": 0.661844107536152
+          },
+          {
+            "method": "random",
+            "k": 3,
+            "hits": 1.9855323226084578,
+            "denominator": 43,
+            "hitRate": 0.04617517029321995,
+            "matchedAncestors": 1.9855323226084556,
+            "actualCount": 43,
+            "recall": 0.046175170293219894,
+            "completeHits": 1.9855323226084556
+          },
+          {
+            "method": "random",
+            "k": 5,
+            "hits": 3.309220537680762,
+            "denominator": 43,
+            "hitRate": 0.07695861715536656,
+            "matchedAncestors": 3.30922053768076,
+            "actualCount": 43,
+            "recall": 0.07695861715536652,
+            "completeHits": 3.30922053768076
+          },
+          {
+            "method": "longest-wait",
+            "k": 1,
+            "hits": 3,
+            "denominator": 43,
+            "hitRate": 0.06976744186046512,
+            "matchedAncestors": 3,
+            "actualCount": 43,
+            "recall": 0.06976744186046512,
+            "completeHits": 3
+          },
+          {
+            "method": "longest-wait",
+            "k": 3,
+            "hits": 7,
+            "denominator": 43,
+            "hitRate": 0.16279069767441862,
+            "matchedAncestors": 7,
+            "actualCount": 43,
+            "recall": 0.16279069767441862,
+            "completeHits": 7
+          },
+          {
+            "method": "longest-wait",
+            "k": 5,
+            "hits": 10,
+            "denominator": 43,
+            "hitRate": 0.23255813953488372,
+            "matchedAncestors": 10,
+            "actualCount": 43,
+            "recall": 0.23255813953488372,
+            "completeHits": 10
+          },
+          {
+            "method": "wait-frequency",
+            "k": 1,
+            "hits": 2,
+            "denominator": 43,
+            "hitRate": 0.046511627906976744,
+            "matchedAncestors": 2,
+            "actualCount": 43,
+            "recall": 0.046511627906976744,
+            "completeHits": 2
+          },
+          {
+            "method": "wait-frequency",
+            "k": 3,
+            "hits": 6,
+            "denominator": 43,
+            "hitRate": 0.13953488372093023,
+            "matchedAncestors": 6,
+            "actualCount": 43,
+            "recall": 0.13953488372093023,
+            "completeHits": 6
+          },
+          {
+            "method": "wait-frequency",
+            "k": 5,
+            "hits": 10,
+            "denominator": 43,
+            "hitRate": 0.23255813953488372,
+            "matchedAncestors": 10,
+            "actualCount": 43,
+            "recall": 0.23255813953488372,
+            "completeHits": 10
+          }
+        ]
+      },
+      {
+        "id": "official-announcement",
+        "label": "官方公告时点回测",
+        "firstPeriod": 79,
+        "lastPeriod": 83,
+        "clock": "pre-announcement",
+        "kind": "traveling",
+        "observedPeriods": 5,
+        "evaluatedPeriods": 5,
+        "actualCount": 5,
+        "coveredCount": 4,
+        "coldStartCount": 1,
+        "multiAncestorPeriods": 0,
+        "verifiedEligibleCount": 0,
+        "metrics": [
+          {
+            "method": "random",
+            "k": 1,
+            "hits": 0.0842198581560285,
+            "denominator": 5,
+            "hitRate": 0.0168439716312057,
+            "matchedAncestors": 0.08421985815602837,
+            "actualCount": 5,
+            "recall": 0.016843971631205674,
+            "completeHits": 0.08421985815602837
+          },
+          {
+            "method": "random",
+            "k": 3,
+            "hits": 0.2526595744680855,
+            "denominator": 5,
+            "hitRate": 0.0505319148936171,
+            "matchedAncestors": 0.25265957446808507,
+            "actualCount": 5,
+            "recall": 0.05053191489361701,
+            "completeHits": 0.25265957446808507
+          },
+          {
+            "method": "random",
+            "k": 5,
+            "hits": 0.4210992907801423,
+            "denominator": 5,
+            "hitRate": 0.08421985815602846,
+            "matchedAncestors": 0.42109929078014185,
+            "actualCount": 5,
+            "recall": 0.08421985815602837,
+            "completeHits": 0.42109929078014185
+          },
+          {
+            "method": "longest-wait",
+            "k": 1,
+            "hits": 1,
+            "denominator": 5,
+            "hitRate": 0.2,
+            "matchedAncestors": 1,
+            "actualCount": 5,
+            "recall": 0.2,
+            "completeHits": 1
+          },
+          {
+            "method": "longest-wait",
+            "k": 3,
+            "hits": 1,
+            "denominator": 5,
+            "hitRate": 0.2,
+            "matchedAncestors": 1,
+            "actualCount": 5,
+            "recall": 0.2,
+            "completeHits": 1
+          },
+          {
+            "method": "longest-wait",
+            "k": 5,
+            "hits": 3,
+            "denominator": 5,
+            "hitRate": 0.6,
+            "matchedAncestors": 3,
+            "actualCount": 5,
+            "recall": 0.6,
+            "completeHits": 3
+          },
+          {
+            "method": "wait-frequency",
+            "k": 1,
+            "hits": 1,
+            "denominator": 5,
+            "hitRate": 0.2,
+            "matchedAncestors": 1,
+            "actualCount": 5,
+            "recall": 0.2,
+            "completeHits": 1
+          },
+          {
+            "method": "wait-frequency",
+            "k": 3,
+            "hits": 1,
+            "denominator": 5,
+            "hitRate": 0.2,
+            "matchedAncestors": 1,
+            "actualCount": 5,
+            "recall": 0.2,
+            "completeHits": 1
+          },
+          {
+            "method": "wait-frequency",
+            "k": 5,
+            "hits": 3,
+            "denominator": 5,
+            "hitRate": 0.6,
+            "matchedAncestors": 3,
+            "actualCount": 5,
+            "recall": 0.6,
+            "completeHits": 3
+          }
+        ]
+      },
+      {
+        "id": "group",
+        "label": "集体复刻回测",
+        "firstPeriod": 1,
+        "lastPeriod": 83,
+        "clock": "archive-order",
+        "kind": "group",
+        "observedPeriods": 0,
+        "evaluatedPeriods": 0,
+        "actualCount": 0,
+        "coveredCount": 0,
+        "coldStartCount": 0,
+        "multiAncestorPeriods": 0,
+        "verifiedEligibleCount": 0,
+        "metrics": [
+          {
+            "method": "random",
+            "k": 1,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "random",
+            "k": 3,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "random",
+            "k": 5,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "longest-wait",
+            "k": 1,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "longest-wait",
+            "k": 3,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "longest-wait",
+            "k": 5,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "wait-frequency",
+            "k": 1,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "wait-frequency",
+            "k": 3,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          },
+          {
+            "method": "wait-frequency",
+            "k": 5,
+            "hits": 0,
+            "denominator": 0,
+            "hitRate": null,
+            "matchedAncestors": 0,
+            "actualCount": 0,
+            "recall": null,
+            "completeHits": 0
+          }
+        ]
+      }
+    ]
+  }
+}
