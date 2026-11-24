@@ -1,78 +1,78 @@
 <template>
   <div class="hello">
-    <p id="appname" style="font-family: 'CTLiShuSF'">光遇·复刻档案馆</p>
+    <p id="appname">光遇·复刻档案馆</p>
     <p id="start" @click="start">Start</p>
     <div class="pan">
       <div class="kid">
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season1_x.svg"
+          src="../assets/img/icon/season1_x.webp"
         />
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season7_x.svg"
-        />
-      </div>
-      <div class="kid">
-        <img
-          class="seasonIcon"
-          alt="seasonIcon"
-          src="../assets/img/icon/season2_x.svg"
-        />
-        <img
-          class="seasonIcon"
-          alt="seasonIcon"
-          src="../assets/img/icon/season8_x.svg"
+          src="../assets/img/icon/season7_x.webp"
         />
       </div>
       <div class="kid">
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season3_x.svg"
+          src="../assets/img/icon/season2_x.webp"
         />
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season9_x.svg"
-        />
-      </div>
-      <div class="kid">
-        <img
-          class="seasonIcon"
-          alt="seasonIcon"
-          src="../assets/img/icon/season4_x.svg"
-        />
-        <img
-          class="seasonIcon"
-          alt="seasonIcon"
-          src="../assets/img/icon/season10_x.svg"
+          src="../assets/img/icon/season8_x.webp"
         />
       </div>
       <div class="kid">
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season5_x.svg"
+          src="../assets/img/icon/season3_x.webp"
         />
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season11_x.svg"
+          src="../assets/img/icon/season9_x.webp"
         />
       </div>
       <div class="kid">
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season6_x.svg"
+          src="../assets/img/icon/season4_x.webp"
         />
         <img
           class="seasonIcon"
           alt="seasonIcon"
-          src="../assets/img/icon/season12_x.svg"
+          src="../assets/img/icon/season10_x.webp"
+        />
+      </div>
+      <div class="kid">
+        <img
+          class="seasonIcon"
+          alt="seasonIcon"
+          src="../assets/img/icon/season5_x.webp"
+        />
+        <img
+          class="seasonIcon"
+          alt="seasonIcon"
+          src="../assets/img/icon/season11_x.webp"
+        />
+      </div>
+      <div class="kid">
+        <img
+          class="seasonIcon"
+          alt="seasonIcon"
+          src="../assets/img/icon/season6_x.webp"
+        />
+        <img
+          class="seasonIcon"
+          alt="seasonIcon"
+          src="../assets/img/icon/season12_x.webp"
         />
       </div>
     </div>
@@ -98,14 +98,6 @@ export default class HelloWorld extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-// 在src/assets/css/global.css中将下载号的字体引入
-// @font-face {
-//   font-family: CTLiShuSF;
-//   /* src: url('../fonts/flatNum.ttf'); */
-//   src: url("../assets/css/CTLiShuSF.woff") format("woff");
-//   unicode-range: U+30-39;
-// }
-
 #appname {
   background: black;
   position: relative;
@@ -114,7 +106,7 @@ export default class HelloWorld extends Vue {
   padding: 0;
   color: #ffd700;
   font-size: 2rem;
-  font-family: "CTLiShuSF";
+  font-family: var(--font-lishu);
 }
 
 #start {
@@ -152,6 +144,7 @@ export default class HelloWorld extends Vue {
     padding: 0;
     text-align: left;
     position: absolute;
+    pointer-events: none;
     // background: yellowgreen;
     width: 300px;
     height: 100px;
@@ -161,7 +154,9 @@ export default class HelloWorld extends Vue {
     > .seasonIcon {
       width: 60px;
       height: 60px;
+      object-fit: contain;
       position: absolute;
+      pointer-events: auto;
       padding: 10px;
       top: 17.5px;
       transform: rotate(-90deg);

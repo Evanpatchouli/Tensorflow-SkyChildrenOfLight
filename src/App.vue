@@ -15,7 +15,7 @@
   background: #171717;
 
   a {
-    font-family: CTLiShuSF;
+    font-family: var(--font-lishu);
     font-weight: bold;
     color: #2c3e50;
 

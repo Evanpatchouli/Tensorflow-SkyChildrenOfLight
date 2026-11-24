@@ -73,11 +73,6 @@ export default {
   --radius: 5px;
   --color: #5656e3;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 .container {
   width: var(--side);
   height: var(--side);
