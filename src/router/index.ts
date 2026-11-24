@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-import skypre from "../views/skypre.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,7 +11,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/skypre",
     name: "skypre",
-    component: skypre,
+    component: () =>
+      import(/* webpackChunkName: "skypre" */ "../views/skypre.vue"),
   },
   {
     path: "/about",
@@ -32,11 +32,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/test",
     name: "test",
     component: () => import("../views/test.vue"),
-  },
-  {
-    path: "/skypre",
-    name: "skypre",
-    component: () => import("../views/skypre.vue"),
   },
   {
     path: "/likeit/rotateload",

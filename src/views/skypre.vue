@@ -2,16 +2,16 @@
 <template>
   <div class="main">
     <div class="trainBox">
-      <p style="font-family: 'CTLiShuSF'; color: aliceblue;" id="tabname">{{ tab.currentName }}</p>
-      <el-button @click="train" type="primary">训练</el-button>
-      <el-button @click="adjust()" type="warning">调参</el-button>
-      <el-button @click="predict()" type="success">预测</el-button>
-      <el-button @click="save()" type="danger" v-if="false">保存</el-button>
+      <p style="font-family: var(--font-lishu, 'CTLiShuSF'); color: aliceblue;" id="tabname">{{ tabNames[tab] }}</p>
+      <el-button @click="train" type="primary" :disabled="!!loadingMessage">训练</el-button>
+      <el-button @click="showAdjust = true" type="warning" :disabled="!!loadingMessage">调参</el-button>
+      <el-button @click="predict" type="success" :disabled="!!loadingMessage">预测</el-button>
     </div>
-    <evan-tabs-vue v-model:current="tab.current" id="tabTool"></evan-tabs-vue>
+    <el-alert v-if="operationError" :title="operationError" type="error" show-icon @close="operationError = ''" />
+    <evan-tabs-vue v-model:current="tab" id="tabTool"></evan-tabs-vue>
     <div id="tabs">
-      <div class="mytab" v-if="tab.current == 1">
-        <el-table id="table" :data="result" style="width: 100%" height="70vh" ref="tableref"
+      <div class="mytab" v-if="tab === 1">
+        <el-table id="table" :data="result" style="width: 100%" height="70vh"
           :cell-style="{ 'text-align': 'center' }" :header-cell-style="{ 'background': '#171717' }">
           <el-table-column prop="rank" label="排名" align="center"> </el-table-column>
           <el-table-column prop="name" label="先祖" align="center">
@@ -35,13 +35,13 @@
           <el-table-column prop="result" label="复刻指数" align="center"> </el-table-column>
         </el-table>
       </div>
-      <div class="mytab" v-if="tab.current == 2">
-        <el-table id="table" :data="recordCN" style="width: 100%" height="70vh" ref="tableref"
+      <div class="mytab" v-if="tab === 2">
+        <el-table id="table" :data="recordCN" style="width: 100%" height="70vh"
           :cell-style="{ 'text-align': 'center' }" :header-cell-style="{ 'background': '#171717' }">
           <el-table-column prop="id" label="档期" align="center"> </el-table-column>
           <el-table-column prop="name" label="先祖" align="center" width="200">
             <template #default="scope">
-              <p id="t2name" @click="sliteTab(3)">{{ scope.row.name }}</p>
+              <p id="t2name" @click="tab = 3">{{ scope.row.name }}</p>
             </template>
           </el-table-column>
           <el-table-column prop="count" label="第几次复刻" align="center"> </el-table-column>
@@ -50,7 +50,7 @@
           <el-table-column prop="map" label="地图" align="center" > </el-table-column>        
         </el-table>
       </div>
-      <div class="mytab" v-if="tab.current == 3" id="mytab3">
+      <div class="mytab" v-if="tab === 3" id="mytab3">
         <div>
           <p style="font-size: 2rem">Unfinished</p>
           <div class="info">
@@ -62,303 +62,179 @@
         </div>
       </div>
     </div>
-    <el-dialog :width="400" :showClose="false" v-model="visible" v-if="visible" id="dialog1">
+    <el-dialog :width="400" :showClose="false" v-model="showResult" v-if="showResult" id="dialog1">
       <div id="result">预测完成</div>
-      <el-button type="primary" @click="close(1)" id="elbtn1">确认</el-button>
+      <el-button type="primary" @click="showResult = false" id="elbtn1">确认</el-button>
     </el-dialog>
-    <el-dialog :width="400" :showClose="false" v-model.lazy="visible2" v-if="visible2" :close-on-click-modal="false"
-      id="dialog2">
+    <el-dialog :width="400" :showClose="false" :model-value="!!loadingMessage" v-if="loadingMessage"
+      :close-on-click-modal="false" :close-on-press-escape="false" id="dialog2">
       <evan-rotateloading id="loading"></evan-rotateloading>
-      <div id="text">{{ dialog2 }}</div>
+      <div id="text">{{ loadingMessage }}</div>
     </el-dialog>
-    <el-dialog title="调整源参数的权重" :width="400" :showClose="false" v-model.lazy="visible3" :close-on-click-modal="false"
-      v-if="visible3" id="dialog3">
+    <el-dialog title="调整源参数的权重" :width="400" :showClose="false" v-model="showAdjust" :close-on-click-modal="false"
+      v-if="showAdjust" id="dialog3">
       <div id="dog3remark">调整后请点击一下训练，即使是把参数都调回1</div>
       <div v-for="(item, index) in ratios" :key="index">
         <span style="font-family:YouYuan;">{{ item.name }}</span>
-        <el-slider v-model="item.ratio" :step="1" max="10" :disabled="index == 0"></el-slider>
+        <el-slider v-model="item.ratio" :step="1" :max="10" :disabled="index === 0"></el-slider>
       </div>
-      <el-button type="primary" @click="close(3)" id="elbtn1">确认</el-button>
+      <el-button type="primary" @click="showAdjust = false" id="elbtn1">确认</el-button>
     </el-dialog>
   </div>
 </template>
-<script lang="js">
-import * as tf from "@tensorflow/tfjs";
-import { string } from "@tensorflow/tfjs";
-import * as tfvis from "@tensorflow/tfjs-vis";
-import evanRotateloading from "../components/likeit/evan-rotateloading";
+<script>
+import { onBeforeUnmount, reactive, ref } from "vue";
+import evanRotateloading from "../components/likeit/evan-rotateloading.vue";
 import evanTabsVue from "@/components/likeit/evan-tabs.vue";
-function quickSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
-  }
-  let arr1 = [], arr2 = [];
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i].result > arr[0].result) {
-      arr1.push(arr[i]);
-    } else {
-      arr2.push(arr[i]);
-    }
-  }
-  arr1 = quickSort(arr1);
-  arr2 = quickSort(arr2);
-  arr1.push(arr[0]);
-  return arr1.concat(arr2)
-}
+import ancestors from "../assets/data/ancestor.json";
+import record from "../assets/data/record.json";
 
-async function init() {
-  const inputs = tf.tensor(data.map((p) => [p.f1, p.f2, p.f3, p.f4, p.f5, p.f6, p.f7, p.f8]));
-  const labels = tf.tensor(data.map((p) => p.target));
-  modelTmp.fit(inputs, labels, {
-    batchSize: 50,
-    epochs: 20,
-    callbacks: tfvis.show.fitCallbacks({ name: "训练效果" }, ["loss"]),
-  });
-  model = await tf.loadLayersModel('skypre-model.json');
-}
-
-let xwidth = window.screen.width;
-document.documentElement.style.setProperty("--screenWidth", xwidth + "px");
-
-let model;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-let data = require("../assets/data/history.json");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-let ancestors = Array;
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-let record = require("../assets/data/record.json");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-ancestors = require("../assets/data/ancestor.json");
-// console.log(ancestors.find(o => o.id === 1));
-const modelTmp = tf.sequential();
-modelTmp.add(
-  tf.layers.dense({
-    units: 1,
-    inputShape: [8],
-    activation: "sigmoid",
-  })
-);
-modelTmp.compile({
-  loss: tf.losses.logLoss,
-  optimizer: tf.train.adam(0.1),
+const maps = ["晨岛", "云野", "雨林", "霞谷", "墓土", "禁阁"];
+const tabNames = { 1: "预测结果", 2: "历史复刻", 3: "先祖图鉴" };
+const ancestorsById = new Map(ancestors.map((ancestor) => [ancestor.id, ancestor]));
+const lastRetroByAncestor = new Map(record.map(({ f1, f2 }) => [f2, f1]));
+const recordCN = record.map(({ f1, f2, f3, f8 }) => {
+  const ancestor = ancestorsById.get(f2);
+  return {
+    id: f1,
+    name: ancestor.name,
+    leave: f3 === -1 ? "未曾复刻" : f3,
+    season: ancestor.seasonname,
+    map: maps[ancestor.mapid - 1],
+    count: f8,
+  };
 });
-tfvis.show.fitCallbacks({ name: "训练效果" }, ["loss"]);
-init();
+
 export default {
   name: "skypre",
   components: { evanRotateloading, evanTabsVue },
-  data() {
+  setup() {
+    const tab = ref(2);
+    const result = ref([]);
+    const showResult = ref(false);
+    const showAdjust = ref(false);
+    const loadingMessage = ref("");
+    const operationError = ref("");
+    const ratios = reactive([
+      { name: "下期复刻档数(锁定1作为基准)", ratio: 1 },
+      { name: "先祖序号", ratio: 1 },
+      { name: "多久没复刻了", ratio: 1 },
+      { name: "所属季节", ratio: 1 },
+      { name: "所在地图(六大地图)", ratio: 1 },
+      { name: "先祖热度", ratio: 1 },
+      { name: "是否受政治等特殊因素影响", ratio: 1 },
+      { name: "已经复刻几次了", ratio: 1 },
+    ]);
+    let activeModel;
+    let usesTemporaryModel = false;
+    let unmounted = false;
+    let closeTrainingVisor;
+
+    function activateModel(model, isTemporary = false) {
+      const previousModel = activeModel;
+      activeModel = model;
+      usesTemporaryModel = isTemporary;
+      if (previousModel) previousModel.dispose();
+    }
+
+    function showTrainingVisor(visor) {
+      if (!closeTrainingVisor) {
+        const app = document.getElementById("app");
+        const syncLayout = () => app.classList.toggle("tfjs-visor-open", visor.isOpen());
+        const observer = new MutationObserver(syncLayout);
+        observer.observe(visor.el, { subtree: true, attributeFilter: ["data-isopen"] });
+        syncLayout();
+        closeTrainingVisor = () => {
+          observer.disconnect();
+          visor.close();
+          visor.unbindKeys();
+          app.classList.remove("tfjs-visor-open");
+        };
+      }
+      visor.bindKeys();
+      visor.open();
+    }
+
+    onBeforeUnmount(() => {
+      unmounted = true;
+      if (closeTrainingVisor) closeTrainingVisor();
+      if (!loadingMessage.value) activateModel();
+    });
+
+    async function runModelAction(message, failureMessage, action) {
+      if (loadingMessage.value) return;
+      operationError.value = "";
+      loadingMessage.value = message;
+      try {
+        const backend = await import(/* webpackChunkName: "skypre-model" */ "../skypre-model");
+        if (!unmounted) await action(backend);
+      } catch (error) {
+        if (!unmounted) {
+          operationError.value = failureMessage;
+          console.error(error);
+        }
+      } finally {
+        loadingMessage.value = "";
+        if (unmounted) activateModel();
+      }
+    }
+
+    function train() {
+      return runModelAction("正在准备模型，请稍后…", "准备模型失败，请重试。", async (backend) => {
+        if (ratios.some(({ ratio }) => ratio !== 1)) {
+          loadingMessage.value = "正在训练中，请稍后…";
+          const model = await backend.trainTemporaryModel(showTrainingVisor, () => !unmounted);
+          if (model) activateModel(model, true);
+        } else if (!activeModel || usesTemporaryModel) {
+          activateModel(await backend.loadPresetModel());
+        }
+      });
+    }
+
+    function predict() {
+      return runModelAction("正在预测中，请稍后…", "预测失败，请重试。", async (backend) => {
+        if (!activeModel) activateModel(await backend.loadPresetModel());
+        if (unmounted) return;
+
+        const weights = ratios.map(({ ratio }) => ratio);
+        const features = ancestors.map((ancestor) => {
+          const lastRetro = lastRetroByAncestor.get(ancestor.id);
+          return [
+            record.length,
+            ancestor.id,
+            lastRetro === undefined ? -1 : record.length - lastRetro,
+            ancestor.seasonid,
+            ancestor.mapid,
+            ancestor.hotscore,
+            0,
+            ancestor.retro + 1,
+          ].map((value, index) => value * weights[index]);
+        });
+        const scores = await backend.predictScores(activeModel, features);
+        if (unmounted) return;
+
+        const ranked = ancestors.map((ancestor, index) => ({
+          id: ancestor.id,
+          name: ancestor.name,
+          result: scores[index].toFixed(8),
+          season: ancestor.seasonname,
+          map: maps[ancestor.mapid - 1],
+          hot: ancestor.hotscore,
+          retro: ancestor.retro,
+        }));
+        ranked.sort((first, second) => Number(second.result) - Number(first.result));
+        result.value = ranked.map((row, index) => ({ rank: index + 1, ...row }));
+        tab.value = 1;
+        showResult.value = true;
+      });
+    }
+
     return {
-      visible: false,
-      visible2: false,
-      visible3: false,
-      pre: {
-        p1: Number,
-        p2: Number,
-        p3: Number,
-        p4: Number,
-        p5: Number,
-        p6: Number,
-        p7: Number,
-        p8: Number,
-      },
-      ratios: [
-        { name: "下期复刻档数(锁定1作为基准)", ratio: 1 },
-        { name: "先祖序号", ratio: 1 },
-        { name: "多久没复刻了", ratio: 1 },
-        { name: "所属季节", ratio: 1 },
-        { name: "所在地图(六大地图)", ratio: 1 },
-        { name: "先祖热度", ratio: 1 },
-        { name: "是否受政治等特殊因素影响", ratio: 1 },
-        { name: "已经复刻几次了", ratio: 1 },
-      ],
-      maps: [
-        { id: 1, name: '晨岛' },
-        { id: 2, name: '云野' },
-        { id: 3, name: '雨林' },
-        { id: 4, name: '霞谷' },
-        { id: 5, name: '墓土' },
-        { id: 6, name: '禁阁' },
-      ],
-      tab: {
-        current: 2,
-        currentName: '历史复刻'
-      },
-      dialog2: '',
-      result: [],
-      recordCN: []
-    }
-  },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  mounted() {
-    let rds = [];
-    for (let element of record) {
-      let a = ancestors.filter(o => o.id === element.f2)[0];
-      //console.log(a);
-      let rd = {
-      id: Number,
-      name: string,
-      leave: string,
-      season: string,
-      map: string,
-      count: Number
+      tab, tabNames, recordCN, result, ratios, showResult, showAdjust,
+      loadingMessage, operationError, train, predict,
     };
-        rd.id = element.f1;
-        rd.name = a.name;
-        let leave;
-        if(element.f3 != -1){
-          leave = element.f3;
-        }else {
-          leave = '未曾复刻';
-        }
-        rd.leave = leave;
-        rd.season = a.seasonname;
-        rd.map = this.maps[a.mapid-1].name;
-        rd.count = element.f8;
-        rds.push(rd);
-    }
-    this.recordCN = rds;
-    // console.log(this.recordCN);
   },
-  watch: {
-    'tab.current': {
-      handler(newVal){
-        if(newVal==1){
-          this.tab.currentName = "预测结果";
-        }else if(newVal==2){
-          this.tab.currentName = "历史复刻";
-        }else {
-          this.tab.currentName = "先祖图鉴";
-        }
-      },
-      immediate: true,
-      deep: true
-    }
-  },
-  methods: {
-    async train() {
-      this.dialog2 = "正在训练中请稍后..."
-      this.visible2 = true;
-      model = null;
-      let isChangeRatio = false;
-      for (let element of this.ratios) {
-        if(element.ratio != 1){
-          isChangeRatio = true;
-          break;
-        }
-      }
-      if (isChangeRatio) {  //这代表参数改了，使用临时训练的新模型
-          const inputs = tf.tensor(data.map((p) => [p.f1, p.f2, p.f3, p.f4, p.f5, p.f6, p.f7, p.f8]));
-          const labels = tf.tensor(data.map((p) => p.target));
-          await modelTmp.fit(inputs, labels, {
-            batchSize: 50,
-            epochs: 20,
-            callbacks: tfvis.show.fitCallbacks({ name: "训练效果" }, ["loss"]),
-          });
-          model = modelTmp;
-        } else {
-          model = await tf.loadLayersModel('skypre-model.json');
-        }
-      //   alert("visible: " + this.visible);
-      this.visible2 = false
-    },
-    adjust() {
-      this.visible3 = true;
-    },
-    async predict() {
-      //   alert("visible: " + this.visible);
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      this.dialog2 = "正在预测中请稍后..."
-      this.visible2 = true;
-      setTimeout(this.premain, 5000);
-    },
-    async premain(){
-        this.pre.p1 = record.length;
-        let result = [];
-        let ancestorNum = ancestors.length;
-        for (let i = 0; i < ancestorNum; i++) {
-          //console.log('--------------------')
-          //console.log('id: ' + ancestors[i].id + ' name: ' + ancestors[i].name);
-          let rds = record.filter(o => o.f2 === i + 1);
-          let retro = rds.length;
-          //console.log("复刻次数: " + retro)
-
-          this.pre.p2 = ancestors[i].id
-          if (retro != 0) {
-            this.pre.p3 = this.pre.p1 - rds[rds.length - 1].f1
-          } else {
-            this.pre.p3 = -1
-          }
-          this.pre.p4 = ancestors[i].seasonid
-          this.pre.p5 = ancestors[i].mapid
-          this.pre.p6 = ancestors[i].hotscore
-          this.pre.p7 = 0
-          this.pre.p8 = ancestors[i].retro + 1
-
-          let preInputs = tf.tensor([[
-            this.pre.p1 * this.ratios[0].ratio,
-            this.pre.p2 * this.ratios[1].ratio,
-            this.pre.p3 * this.ratios[2].ratio,
-            this.pre.p4 * this.ratios[3].ratio,
-            this.pre.p5 * this.ratios[4].ratio,
-            this.pre.p6 * this.ratios[5].ratio,
-            this.pre.p7 * this.ratios[6].ratio,
-            this.pre.p8 * this.ratios[7].ratio
-          ]]);
-          let pred = await model.predict(preInputs).dataSync()[0].toFixed(8);
-          this.visible2 = false;
-          let pre_rs = {
-            rank: Number,
-            id: Number,
-            name: string,
-            result: Number,
-            season: string,
-            map: string,
-            hot: Number,
-            retro: Number
-          }
-          pre_rs.id = ancestors[i].id
-          pre_rs.name = ancestors[i].name
-          pre_rs.result = pred
-          pre_rs.season = ancestors[i].seasonname
-          pre_rs.map = this.maps[ancestors[i].mapid-1].name
-          pre_rs.hot = ancestors[i].hotscore
-          pre_rs.retro = ancestors[i].retro
-          result.push(pre_rs);
-          // console.log(pre_rs);
-        }
-        result = quickSort(result);
-        for(let j = 0 ; j < result.length ; j++){
-          result[j].rank = j + 1;
-        }
-        // console.log('JS快排后');
-        this.result = result;
-        await this.$nextTick(async () => {
-          await this.$refs.tableref.doLayout()
-        })
-        this.visible = true;
-        //console.log(result);
-        //let pred = model.predict(tf.tensor([[this.pre.p1 * 1, this.pre.p2 * 1, this.pre.p3 * 1, this.pre.p4 * 1, this.pre.p5 * 1, this.pre.p6 * 1, this.pre.p7 * 1, this.pre.p8 * 1]])).dataSync()[0];
-        //this.result = pred;
-       },
-    save() {
-      model.save('downloads://skypre-model');
-    },
-    close(id) {
-      if (id == 1) {
-        this.visible = false;
-      } else if (id == 3) {
-        this.visible3 = false;
-      }
-    },
-    sliteTab(tab) {
-      this.tab.current = tab;
-    },
-    switchSeason(name) {
-      alert(name);
-    }
-  }
-}
+};
 </script>
 <style lang="scss">
 #tabname {
@@ -383,8 +259,7 @@ export default {
 }
 
 @media screen and (max-width: 1000px) {
-  .css-q2ki5z,
-  [data-css-q2ki5z] {
+  #tfjs-visor-container {
     display: none;
   }
 }
@@ -407,12 +282,8 @@ export default {
   padding-bottom: 40px;
 }
 
-.css-1x8bgru:hover {
+#tfjs-visor-container .visor-controls button:hover {
   cursor: pointer;
-}
-
-.css-omocl {
-  display: none;
 }
 
 #loading {
@@ -420,18 +291,6 @@ export default {
   left: 120px;
   bottom: 20px;
 }
-
-#tfjs-visor-container
-  > div
-  > div.css-mmb2gq.visor-controls
-  > button.css-1x8bgru.css-omocl {
-  display: none;
-}
-
-// .css-q2ki5z {
-//   right: unset;
-//   top: 500px;
-// }
 
 /deep/ th.gutter {
   display: table-cell !important;
@@ -539,17 +398,12 @@ export default {
   }
 }
 
-:root {
-  --screenWidth: 500px;
-}
 .info {
   position: absolute;
   z-index: 999;
   top: 50px;
-  left: calc((var(--screenWidth) - 550px) / 2 - 185px - 20px);
-  @media screen and (max-width: 1000px) {
-    left: calc(var(--screenWidth) / 2 - 185px - 20px);
-  }
+  left: 50%;
+  transform: translateX(-50%);
   // border: 1px white solid;
 
   width: 370px;
