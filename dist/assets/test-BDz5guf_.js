@@ -1,0 +1,1 @@
+import{I as e,b as t,i as n}from"./index-BUkmPOaW.js";var r={},i={class:`test`};function a(n,r){return e(),t(`div`,i)}var o=n(r,[[`render`,a]]);export{o as default};

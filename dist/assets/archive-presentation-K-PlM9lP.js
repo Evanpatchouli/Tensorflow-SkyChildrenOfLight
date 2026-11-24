@@ -1,0 +1,1 @@
+var e=[`晨岛`,`云野`,`雨林`,`霞谷`,`墓土`,`禁阁`];function t(t){return e[t-1]??`地图未记录`}export{t};
