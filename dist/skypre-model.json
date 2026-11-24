@@ -48,7 +48,7 @@
     "weightsManifest": [
         {
             "paths": [
-                "./tensorflow-skypre/skypre-model.weights.bin"
+                "skypre-model.weights.bin"
             ],
             "weights": [
                 {
